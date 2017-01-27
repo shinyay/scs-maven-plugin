@@ -27,6 +27,7 @@ This plugin has the following feature:
 - Delete a storage container
 - Delete a object in the container
 - Delete all objects in the container
+- Upload a object to the container
 
 ## Requirement
 
@@ -97,6 +98,19 @@ You configure target container under <configue> element in pom.xml
 ```xml
 <configuration>
     <storage>_apaas</storage>
+</configuration>
+```
+
+### Upload a object to the container
+
+- command: `scs-maven-plugin:upload-object`
+
+You configure target container and object under <configue> element in pom.xml
+
+```xml
+<configuration>
+    <storage>_apaas</storage>
+    <object>${project.build.directory}/SampleApp.zip</object>
 </configuration>
 ```
 
