@@ -13,7 +13,7 @@ Storage Cloud Service has been implemented with REST API though,
 it is more convenient if you could manage on CLI or IDE.
 This plugin enables to manage it with Maven Command.
 
-## demo
+## Demo
 
 ![demo](./docs/images/scs-maven-plugin.gif)
 
