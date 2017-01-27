@@ -70,7 +70,7 @@
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>3.5</version>
                 <configuration>
-                    <goalPrefix>scs-maven-plugin</goalPrefix>
+                    <goalPrefix>scs</goalPrefix>
                     <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
                 </configuration>
                 <executions>
