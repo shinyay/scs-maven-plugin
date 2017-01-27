@@ -36,7 +36,7 @@ public class SCSDeleteObjectsMojo extends AbstractMojo {
         getLog().info("SCS CONTAINER: " + storage);
 
         getSCSAuthToken(identitydomain, user, password);
-        deleteAllObjectsInSCSContainer(scsInfo);
+        deleteAllObjectsInSCSContainer();
     }
 
     private void getSCSAuthToken(String identityDomain, String user, String password) {
@@ -48,7 +48,7 @@ public class SCSDeleteObjectsMojo extends AbstractMojo {
         }
     }
 
-    private void deleteAllObjectsInSCSContainer(SCSInfo scsInfo) {
+    private void deleteAllObjectsInSCSContainer() {
         scsInfo.setContainerName(storage);
         String result = SCSFunctions.deleteAllObjectsInContainer(scsInfo);
         getLog().info(result);

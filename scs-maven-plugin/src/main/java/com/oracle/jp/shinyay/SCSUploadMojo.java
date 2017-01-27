@@ -9,8 +9,8 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-@Mojo(name = "create", threadSafe = true, defaultPhase = LifecyclePhase.INSTALL)
-public class SCSCreateMojo extends AbstractMojo {
+@Mojo(name = "upload", threadSafe = true, defaultPhase = LifecyclePhase.INSTALL)
+public class SCSUploadMojo extends AbstractMojo {
 
     @Parameter(required = true)
     private  String identitydomain;
@@ -30,13 +30,13 @@ public class SCSCreateMojo extends AbstractMojo {
     private static SCSInfo scsInfo;
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-        getLog().info("IDENTITY DOMAIN: " + identitydomain);
-        getLog().info("CLOUD USER: " + user);
-        getLog().info("PASSWORD: " + password );
-        getLog().info("SCS CONTAINER: " + storage);
+        getLog().info("identityDomain: " + identitydomain);
+        getLog().info("user: " + user);
+        getLog().info("password: " + password );
+        getLog().info("container: " + storage);
 
         getSCSAuthToken(identitydomain, user, password);
-        createSCSContainer();
+        uploadObject();
     }
 
     private void getSCSAuthToken(String identityDomain, String user, String password) {
@@ -48,9 +48,10 @@ public class SCSCreateMojo extends AbstractMojo {
         }
     }
 
-    private void createSCSContainer() {
+    private void uploadObject() {
         scsInfo.setContainerName(storage);
-        String result = SCSFunctions.createContainer(scsInfo);
+        scsInfo.setObjectName(object);
+        String result = SCSFunctions.uploadObject(scsInfo);
         getLog().info(result);
     }
 }

@@ -19,7 +19,7 @@ This plugin enables to manage it with Maven Command.
 
 ## Features
 
-This plugin has the following featrure:
+This plugin has the following feature:
 
 - List storage containers
 - Show objects in the container

@@ -9,7 +9,8 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-@Mojo(name = "sample", threadSafe = true, defaultPhase = LifecyclePhase.COMPILE)
+
+@Mojo(name = "sample", threadSafe = true, defaultPhase = LifecyclePhase.INSTALL)
 public class SampleMojo extends AbstractMojo {
 
     @Parameter(required = true)
@@ -36,14 +37,15 @@ public class SampleMojo extends AbstractMojo {
         getLog().info("container: " + storage);
 
         getSCSAuthToken(identitydomain, user, password);
-        listSCSContainers(scsInfo);
+        //listSCSContainers(scsInfo);
         //createSCSContainer(scsInfo);
         //listSCSContainers(scsInfo);
-        showSCSContainer(scsInfo);
-        deleteAllObjectsInSCSContainer(scsInfo);
-        deleteSCSContainer(scsInfo);
-        listSCSContainers(scsInfo);
-
+        //showSCSContainer(scsInfo);
+        //deleteAllObjectsInSCSContainer(scsInfo);
+        //deleteSCSContainer(scsInfo);
+        //listSCSContainers(scsInfo);
+       // uploadObject();
+        showSCSContainer();
     }
 
     private void getSCSAuthToken(String identityDomain, String user, String password) {
@@ -55,38 +57,46 @@ public class SampleMojo extends AbstractMojo {
         }
     }
 
-    private void listSCSContainers(SCSInfo scsInfo) {
+    private void listSCSContainers() {
         String result = SCSFunctions.listContainers(scsInfo);
         getLog().info(result);
     }
 
-    private void showSCSContainer(SCSInfo scsInfo) {
+    private void showSCSContainer() {
         scsInfo.setContainerName(storage);
         String result = SCSFunctions.showContainer(scsInfo);
         getLog().info(result);
     }
 
-    private void createSCSContainer(SCSInfo scsInfo) {
+    private void createSCSContainer() {
         scsInfo.setContainerName(storage);
         String result = SCSFunctions.createContainer(scsInfo);
         getLog().info(result);
     }
 
-    private void deleteSCSContainer(SCSInfo scsInfo) {
+    private void deleteSCSContainer() {
         scsInfo.setContainerName(storage);
         String result = SCSFunctions.deleteContainer(scsInfo);
         getLog().info(result);
     }
 
-    private void deleteObjectInSCSContainer(SCSInfo scsInfo) {
+    private void deleteObjectInSCSContainer() {
         scsInfo.setContainerName(storage);
         scsInfo.setObjectName(object);
-
+        String result = SCSFunctions.deleteObjectInContainer(scsInfo);
+        getLog().info(result);
     }
 
-    private void deleteAllObjectsInSCSContainer(SCSInfo scsInfo) {
+    private void deleteAllObjectsInSCSContainer() {
         scsInfo.setContainerName(storage);
         String result = SCSFunctions.deleteAllObjectsInContainer(scsInfo);
+        getLog().info(result);
+    }
+
+    private void uploadObject() {
+        scsInfo.setContainerName(storage);
+        scsInfo.setObjectName(object);
+        String result = SCSFunctions.uploadObject(scsInfo);
         getLog().info(result);
     }
 }

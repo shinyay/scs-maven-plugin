@@ -36,7 +36,7 @@ public class SCSListMojo extends AbstractMojo {
         getLog().info("SCS CONTAINER: " + storage);
 
         getSCSAuthToken(identitydomain, user, password);
-        listSCSContainers(scsInfo);
+        listSCSContainers();
     }
 
     private void getSCSAuthToken(String identityDomain, String user, String password) {
@@ -48,7 +48,7 @@ public class SCSListMojo extends AbstractMojo {
         }
     }
 
-    private void listSCSContainers(SCSInfo scsInfo) {
+    private void listSCSContainers() {
         String result = SCSFunctions.listContainers(scsInfo);
         getLog().info(result);
     }

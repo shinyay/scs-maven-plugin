@@ -195,4 +195,26 @@ public class SCSFunctions {
             return result;
         }
     }
+
+    public static String uploadObject(SCSInfo scsInfo) {
+        Properties scsProps = scsInfo.getSCSProps();
+        String[] objtctPath = scsInfo.getObjectName().split("/");
+        String url = scsProps.getProperty(SCSConstants.HEADER_X_STORAGE_URL)
+                + "/"
+                + scsInfo.getContainerName()
+                + "/"
+                + objtctPath[objtctPath.length - 1];
+        scsInfo.getLog().info("REQUEST: UPLOAD " + url);
+        BasicNameValuePair[] headers = new BasicNameValuePair[1];
+        headers[0] = new BasicNameValuePair(SCSConstants.HEADER_X_AUTH_TOKEN,
+                scsProps.getProperty(SCSConstants.HEADER_X_AUTH_TOKEN));
+        String result = null;
+        try {
+            result = PutMethod.HttpPutMethod(url, headers, null, null);
+        } catch (Exception e) {
+            scsInfo.getLog().error(e);
+        } finally {
+            return result;
+        }
+    }
 }

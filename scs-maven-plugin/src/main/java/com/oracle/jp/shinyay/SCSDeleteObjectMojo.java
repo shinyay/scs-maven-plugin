@@ -37,7 +37,7 @@ public class SCSDeleteObjectMojo extends AbstractMojo {
         getLog().info("OBJECT: " + object);
 
         getSCSAuthToken(identitydomain, user, password);
-        deleteObjectInSCSContainer(scsInfo);
+        deleteObjectInSCSContainer();
     }
 
     private void getSCSAuthToken(String identityDomain, String user, String password) {
@@ -49,7 +49,7 @@ public class SCSDeleteObjectMojo extends AbstractMojo {
         }
     }
 
-    private void deleteObjectInSCSContainer(SCSInfo scsInfo) {
+    private void deleteObjectInSCSContainer() {
         scsInfo.setContainerName(storage);
         scsInfo.setObjectName(object);
         String result = SCSFunctions.deleteObjectInContainer(scsInfo);
