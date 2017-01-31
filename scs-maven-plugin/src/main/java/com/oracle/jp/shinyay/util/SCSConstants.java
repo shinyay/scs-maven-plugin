@@ -27,4 +27,6 @@ public class SCSConstants {
     public static final String LINE_SEPARATOR_LINUX = "\n";
     public static final String LINE_SEPARATOR_WINDOWS = "\r\n";
 
+    public static final String PREFIX_STORAGE = "Storage-";
+
 }

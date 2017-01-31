@@ -19,7 +19,7 @@ public class PutMethod {
     private PutMethod() {
     }
 
-    public static String HttpPutMethod(String url, BasicNameValuePair[] headers, StringEntity body, Credentials credUser) throws Exception {
+    public static String HttpPutMethod(String url, BasicNameValuePair[] headers, HttpEntity body, Credentials credUser) throws Exception {
         String httpResult;
 
         HttpPut httpPut = new HttpPut(url);
@@ -27,7 +27,7 @@ public class PutMethod {
             httpPut.addHeader(header.getName(), header.getValue());
         }
 
-        Optional<StringEntity> httpBody = Optional.ofNullable(body);
+        Optional<HttpEntity> httpBody = Optional.ofNullable(body);
         httpBody.ifPresent(httpPut::setEntity);
 
         RequestConfig requestConfig = RequestConfig.custom().build();
@@ -52,6 +52,6 @@ public class PutMethod {
                 httpResult = httpResponse.getStatusLine() + SCSConstants.LINE_SEPARATOR;
             }
         }
-        return httpResult.toString();
+        return httpResult;
     }
 }

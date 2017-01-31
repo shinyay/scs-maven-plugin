@@ -11,16 +11,23 @@ public class SCSInfo {
     private final String password;
     private final String identityDomain;
 
-    private final Log log;
+
+    private final String containerName;
+    private final String objectName;
+    private final String targetPath;
 
     private Properties scsProps;
-    private String containerName;
-    private String objectName;
+    private final Log log;
 
     public static class SCSInfoBuilder {
         private final String username;
         private final String password;
         private final String identityDomain;
+
+        private Properties scsProps;
+        private String containerName;
+        private String objectName;
+        private String targetPath;
 
         private Log log;
 
@@ -29,6 +36,26 @@ public class SCSInfo {
             this.username = username;
             this.password = password;
             this.log = new SystemStreamLog();
+        }
+
+        public SCSInfoBuilder scsProps(Properties scsProps){
+            this.scsProps = scsProps;
+            return this;
+        }
+
+        public SCSInfoBuilder containerName(String containerName){
+            this.containerName = containerName;
+            return this;
+        }
+
+        public SCSInfoBuilder objectName(String objectName){
+                this.objectName=objectName;
+                return this;
+        }
+
+        public SCSInfoBuilder targetPath(String targetPath){
+            this.targetPath = targetPath;
+            return this;
         }
 
         public SCSInfoBuilder log(Log log) {
@@ -42,10 +69,14 @@ public class SCSInfo {
     }
 
     private SCSInfo(SCSInfoBuilder builder) {
-        username = builder.username;
-        password = builder.password;
-        identityDomain = builder.identityDomain;
-        log = builder.log;
+        this.username = builder.username;
+        this.password = builder.password;
+        this.identityDomain = builder.identityDomain;
+        this.scsProps = builder.scsProps;
+        this.containerName = builder.containerName;
+        this.objectName = builder.objectName;
+        this.targetPath = builder.targetPath;
+        this.log = builder.log;
     }
 
     public String getUsername() {
@@ -64,16 +95,12 @@ public class SCSInfo {
         return log;
     }
 
-    public void setSCSProps(Properties scsProps) {
-        this.scsProps = scsProps;
-    }
-
     public Properties getSCSProps() {
         return scsProps;
     }
 
-    public void setContainerName(String containerName) {
-        this.containerName = containerName;
+    public void setScsProps(Properties scsProps) {
+        this.scsProps = scsProps;
     }
 
     public String getContainerName() {
@@ -84,7 +111,8 @@ public class SCSInfo {
         return objectName;
     }
 
-    public void setObjectName(String objectName) {
-        this.objectName = objectName;
+    public String getTargetPath() {
+        return targetPath;
     }
+
 }

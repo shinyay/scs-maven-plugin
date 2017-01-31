@@ -62,7 +62,6 @@ public class GetMethod {
 
         RequestConfig requestConfig = RequestConfig.custom().build();
         HttpClient httpClient = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).build();
-        HttpResponse httpResponse = httpClient.execute(httpGet);
-        return httpResponse;
+        return httpClient.execute(httpGet);
     }
 }
