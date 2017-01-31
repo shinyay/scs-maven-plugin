@@ -38,11 +38,11 @@ This plugin has the following feature:
 
 ### List storage containers
 
-- command: `scs-maven-plugin:list`
+- command: `scs:list`
 
 ### Show objects in the container
 
-- command: `scs-maven-plugin:show`
+- command: `scs:show`
 
 You configure target container under <configue> element in pom.xml
 
@@ -54,7 +54,7 @@ You configure target container under <configue> element in pom.xml
 
 ### Create a storage container
 
-- command: `scs-maven-plugin:create`
+- command: `scs:create`
 
 You configure target container under <configue> element in pom.xml
 
@@ -66,7 +66,7 @@ You configure target container under <configue> element in pom.xml
 
 ### Delete a storage container
 
-- command: `scs-maven-plugin:delete`
+- command: `scs:delete`
 
 You configure target container under <configue> element in pom.xml
 
@@ -78,7 +78,7 @@ You configure target container under <configue> element in pom.xml
 
 ### Delete a object in the container
 
-- command: `scs-maven-plugin:delete-object`
+- command: `scs:delete-object`
 
 You configure target container and object under <configue> element in pom.xml
 
@@ -91,7 +91,7 @@ You configure target container and object under <configue> element in pom.xml
 
 ### Delete all objects in the container
 
-- command: `scs-maven-plugin:delete-objects`
+- command: `scs:delete-objects`
 
 You configure target container under <configue> element in pom.xml
 
@@ -103,14 +103,14 @@ You configure target container under <configue> element in pom.xml
 
 ### Upload a object to the container
 
-- command: `scs-maven-plugin:upload-object`
+- command: `scs:upload-object`
 
 You configure target container and object under <configue> element in pom.xml
 
 ```xml
 <configuration>
     <storage>_apaas</storage>
-    <object>${project.build.directory}/SampleApp.zip</object>
+    <object>SampleApp.zip</object>
 </configuration>
 ```
 
@@ -126,7 +126,7 @@ All you have to do is the configuration of your credentials for Oracle Cloud.
     <artifactId>scs-maven-plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
     <configuration>
-        <identitydomain>YOUR_IDENTITY_DOMAIN</identitydomain>>
+        <identitydomain>YOUR_IDENTITY_DOMAIN</identitydomain>
         <user>YOUR_CLOUD_USERID</user>
         <password>YOUR_CLOUD_PASSWORD</password>
         <storage>TARGET_STORAGE_CONTAINER</storage>
