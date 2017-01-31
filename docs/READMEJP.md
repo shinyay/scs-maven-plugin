@@ -34,8 +34,7 @@ curl コマンドなどで直接 REST API をコールして操作する事も�
 - コンテナの削除
 - コンテナ内の単一オブジェクトの削除
 - コンテナ内の全オブジェクトの削除
-
-※アップロードがまだないですね。次、作ります。
+- 指定したコンテナへのオブジェクトのアップロード
 
 ## 前提
 
@@ -48,13 +47,13 @@ curl コマンドなどで直接 REST API をコールして操作する事も�
 
 ### ストレージ・コンテナの一覧表示
 
-- コマンド: `scs-maven-plugin:list`
+- コマンド: `scs:list`
 
 ### コンテナ内のオブジェクトの一覧表示
 
-- コマンド: `scs-maven-plugin:show`
+- コマンド: `scs:show`
 
-表示させるオブジェクトを含んでいる対象のストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素として記述する。
+表示させるオブジェクトを含んでいる対象のストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素として記述します。
 
 ```xml
 <configuration>
@@ -64,9 +63,9 @@ curl コマンドなどで直接 REST API をコールして操作する事も�
 
 ### コンテナの作成
 
-- コマンド: `scs-maven-plugin:create`
+- コマンド: `scs:create`
 
-作成する対象のストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素として記述する。
+作成する対象のストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素として記述します。
 
 ```xml
 <configuration>
@@ -76,9 +75,9 @@ curl コマンドなどで直接 REST API をコールして操作する事も�
 
 ### コンテナの削除
 
-- コマンド: `scs-maven-plugin:delete`
+- コマンド: `scs:delete`
 
-削除する対象のストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素として記述する。
+削除する対象のストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素として記述します。
 
 ```xml
 <configuration>
@@ -88,9 +87,9 @@ curl コマンドなどで直接 REST API をコールして操作する事も�
 
 ### コンテナ内の単一オブジェクトの削除
 
-- コマンド: `scs-maven-plugin:delete-object`
+- コマンド: `scs:delete-object`
 
-削除する対象のオブジェクトと、それを含むストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素及び `<object>` 要素として記述する。
+削除する対象のオブジェクトと、それを含むストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素及び `<object>` 要素として記述します。
 
 ```xml
 <configuration>
@@ -101,14 +100,29 @@ curl コマンドなどで直接 REST API をコールして操作する事も�
 
 ### コンテナ内の全オブジェクトの削除
 
-- コマンド: `scs-maven-plugin:delete-objects`
+- コマンド: `scs:delete-objects`
 
-削除する対象のオブジェクトを含むストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素として記述する。
+削除する対象のオブジェクトを含むストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素として記述します。
 
 
 ```xml
 <configuration>
     <storage>_apaas</storage>
+</configuration>
+```
+
+### 指定したコンテナへのオブジェクトのアップロード
+
+- コマンド: `scs:upload`
+
+アップロード対象のオブジェクトとアップロード先となるストレージ・コンテナを `pom.xml` の configuration 要素配下に `<storage>` 要素及び `<object>` 要素として記述します。
+アップロード対象のオブジェクトは、ビルド成果物が配置される target ディレクトリ `${project.build.directory}` に配置されている必要があります。
+
+
+```xml
+<configuration>
+    <storage>_apaas</storage>
+    <object>${artifactId}-${version}.jar</object>
 </configuration>
 ```
 
@@ -119,7 +133,7 @@ curl コマンドなどで直接 REST API をコールして操作する事も�
 - 追加方法:
 `mvn install:install-file -Dfile=＜jar ファイルのパス＞ -DgroupId=＜グループID＞ -DartifactId=＜アーティファクトID＞ -Dversion=＜バージョン＞ -Dpackaging=jar`
 
-- [scs-maven-plugin-1.0-SNAPSHOT.jar](https://github.com/shinyay/scs-maven-plugin/releases/download/1.0-SNAPSHOT/scs-maven-plugin-1.0-SNAPSHOT.jarhttps://github.com/shinyay/scs-maven-plugin/releases/download/1.0-SNAPSHOT/scs-maven-plugin-1.0-SNAPSHOT.jar)
+- [scs-maven-plugin-1.0.jar](https://github.com/shinyay/scs-maven-plugin/releases/download/1.0/scs-maven-plugin-1.0.jar)
 
 次に、`pom.xml` に **dependency** としてプラグインを追加します。そして **configuration** 要素に Oracle Cloud の認証情報を設定します。
 
