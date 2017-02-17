@@ -4,24 +4,20 @@ import com.oracle.jp.shinyay.http.DeleteMethod;
 import com.oracle.jp.shinyay.http.GetMethod;
 import com.oracle.jp.shinyay.http.PutMethod;
 import org.apache.http.Header;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.FileEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -214,12 +210,10 @@ public class SCSFunctions {
                 + "/"
                 + scsInfo.getObjectName();
         scsInfo.getLog().debug("UPLOAD-FILE: " + scsInfo.getTargetPath() + File.separator + scsInfo.getObjectName());
-        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-        multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-        multipartEntityBuilder.addBinaryBody("zipApp",
-                new FileInputStream(scsInfo.getTargetPath() + File.separator + scsInfo.getObjectName()),
-                ContentType.create("application/zip"), scsInfo.getObjectName());
-        HttpEntity body = multipartEntityBuilder.build();
+
+        FileEntity body = new FileEntity(new File(scsInfo.getTargetPath() + File.separator + scsInfo.getObjectName()));
+        body.setContentType(ContentType.create("application/zip").getMimeType());
+
         scsInfo.getLog().info("REQUEST-UPLOAD: PUT " + url);
         BasicNameValuePair[] headers = new BasicNameValuePair[1];
         headers[0] = new BasicNameValuePair(SCSConstants.HEADER_X_AUTH_TOKEN,
