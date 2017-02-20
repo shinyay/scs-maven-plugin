@@ -54,7 +54,7 @@
                 <artifactId>scs-maven-plugin</artifactId>
                 <version>1.0</version>
                 <configuration>
-                    <identitydomain>YOUR_IDENTITY_DOMAIN</identitydomain>>
+                    <identitydomain>YOUR_IDENTITY_DOMAIN</identitydomain>
                     <user>YOUR_CLOUD_USERID</user>
                     <password>YOUR_CLOUD_PASSWORD</password>
                     <storage>TARGET_STORAGE_CONTAINER</storage>
