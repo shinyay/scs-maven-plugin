@@ -44,7 +44,7 @@ This plugin has the following feature:
 
 - command: `scs:show`
 
-You configure target container under <configue> element in pom.xml
+Configure target container under `configuration` element in pom.xml
 
 ```xml
 <configuration>
@@ -56,7 +56,7 @@ You configure target container under <configue> element in pom.xml
 
 - command: `scs:create`
 
-You configure target container under <configue> element in pom.xml
+You configure target container under `configuration` element in pom.xml
 
 ```xml
 <configuration>
@@ -68,7 +68,7 @@ You configure target container under <configue> element in pom.xml
 
 - command: `scs:delete`
 
-You configure target container under <configue> element in pom.xml
+You configure target container under `configuration` element in pom.xml
 
 ```xml
 <configuration>
@@ -80,7 +80,7 @@ You configure target container under <configue> element in pom.xml
 
 - command: `scs:delete-object`
 
-You configure target container and object under <configue> element in pom.xml
+You configure target container and object under `configuration` element in pom.xml
 
 ```xml
 <configuration>
@@ -93,7 +93,7 @@ You configure target container and object under <configue> element in pom.xml
 
 - command: `scs:delete-objects`
 
-You configure target container under <configue> element in pom.xml
+You configure target container under `configuration` element in pom.xml
 
 ```xml
 <configuration>
@@ -105,7 +105,7 @@ You configure target container under <configue> element in pom.xml
 
 - command: `scs:upload-object`
 
-You configure target container and object under <configue> element in pom.xml
+You configure target container and object under `configuration` element in pom.xml
 
 ```xml
 <configuration>
@@ -116,7 +116,7 @@ You configure target container and object under <configue> element in pom.xml
 
 ## Installation
 
-You include the plugin as a dependency in your Maven project.
+Add the plugin as a dependency in your Maven project.
 All you have to do is the configuration of your credentials for Oracle Cloud.
 
 ```xml
